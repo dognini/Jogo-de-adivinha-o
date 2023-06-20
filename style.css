@@ -2,9 +2,8 @@
 
 :root {
   --font-family: "Montserrat", sans-serif;
-  --bg-color: black;
+  --bg-color: #0aa1dd;
   --primary-color: #e8f9fd;
-  --game-color: black;
 }
 
 body {

@@ -3,12 +3,15 @@ function verificaSeOChutePossuiUmValorValido(chute) {
 
     if (Number.isNaN(numero)) {
         elementoChute.innerHTML += ` <div> Valor Inválido </div>`;
-        return;
     }
+
+    if (Number.isNaN(numero)) {
+        elementoChute.innerHTML += '<div>Valor Inválido</div>';
+    }
+
 
     if (numeroForMaiorOuMenorQueValorPermitido(numero)) {
         elementoChute.innerHTML += ` <div> Número Inválido, o Número precisa estar entre ${maiorValor} e ${menorValor} </div>`;
-        return;
     }
 
     if (numero === numeroSecreto) {
@@ -16,18 +19,17 @@ function verificaSeOChutePossuiUmValorValido(chute) {
             `
                 <h2>Você Acertou!</h2>
                 <h3>O número secreto era ${numeroSecreto}</h3>
-
                 <button id="jogar-novamente" class="btn-jogar" > Jogar Novamente! </button>
+                <div class="loader"> </div>
             `
-        return;
     }
 
     if (numero > numeroSecreto) {
         elementoChute.innerHTML += ` <div>O número secreto é menor <i class="fa-solid fa-down-long"></i> </div> `
-        return;
+
     } else {
         elementoChute.innerHTML += ` <div>O número secreto é maior <i class="fa-solid fa-up-long"></i> </div> `
-        return;
+
     }
 
 }

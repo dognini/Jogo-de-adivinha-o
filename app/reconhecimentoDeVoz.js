@@ -12,16 +12,49 @@ recognition.addEventListener('result', onSpeak);
 function onSpeak(e) {
     const chute = e.results[0][0].transcript;
 
-    mostrarMansagemNaTela(chute);
-    verificaSeOChutePossuiUmValorValido(chute);
+    if (validarNumero(chute)) {
+        mostrarMansagemNaTela(chute);
+        verificaSeOChutePossuiUmValorValido(chute);
+
+    } else {
+
+        if (validarGameOver(chute)) {
+            document.body.innerHTML =
+                `
+                    <h2>Game Over!!!</h2>
+                    <h3 class="game-over">Pressione o botão para jogar novamente</h3>
+                    <button id="jogar-novamente" class="btn-jogar" >Jogar novamente</button>
+                `
+            document.body.style.backgroundColor = "red";
+
+        } else {
+            mostrarMansagemNaTela(chute)
+        }
+    }
 }
 
 function mostrarMansagemNaTela(chute) {
+
     elementoChute.innerHTML =
         `
-            <div>Você disse:</div>
-            <span class="box" >${chute}</span>
+            <div>Você disse: </div>
+            <span class="box"> ${chute} </span>
         `
+
+}
+
+function validarNumero(valor) {
+    return !isNaN(parseFloat(valor)) && isFinite(valor);
+}
+
+function validarGameOver(string) {
+    const padrao = /game over/i; // "i" torna a expressão regular insensível a maiúsculas/minúsculas
+    return padrao.test(string);
+}
+
+function validarStart(string) {
+    const padrao = /start/i; // "i" torna a expressão regular insensível a maiúsculas/minúsculas
+    return padrao.test(string);
 }
 
 recognition.addEventListener('end', () => recognition.start());
